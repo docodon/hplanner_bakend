@@ -1,1 +1,1 @@
-
+ json.list @list.to_a
