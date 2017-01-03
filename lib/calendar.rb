@@ -43,7 +43,7 @@ module Calendar
 
     (DD..DD+INTERVAL).each do |i|
       val = mapping(i,holidays)
-      resp << i if Calendar::mapping(i,holidays)
+      resp << i if Calendar::mapping(i,holidays) == '1'
     end
     resp
   end
