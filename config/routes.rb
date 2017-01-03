@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :leaves do
       collection do
         get '/' => 'leaves#index'
-        post '/plan' => 'leaves#plan'
+        post '/gen_plan' => 'leaves#plan'
       end
     end
   

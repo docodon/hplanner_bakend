@@ -1,0 +1,1 @@
+json.response @gen.top_results.map{ |i| i.calendar_rep }

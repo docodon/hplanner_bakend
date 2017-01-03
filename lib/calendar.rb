@@ -8,10 +8,6 @@ module Calendar
   DD = Date.today
   INTERVAL = 365
 
-  def Calendar.valid_holiday(d)
-    d['class']!='head' && ( d.css('td').last.text=='Gazetted Holiday') #'Restricted Holiday'
-  end
-
   def Calendar.generate_holidays
     yy =  DD.year
     holidays = Set.new
@@ -29,17 +25,9 @@ module Calendar
     holidays
   end
 
-  HOLIDAYS = Calendar.generate_holidays
-
-  def Calendar.mapping(date,holidays)
-    return '1' if date.wday==0 || date.wday==6  || holidays.include?(date)    #sat/sun/gazetted holidays
-    return '0'
-  end
-
-
-  def Calendar.initial_holidays
+  def Calendar.initial_holidays           #fetches holidays and sends it to frontend
     resp = []
-    holidays = Calendar::HOLIDAYS
+    holidays = Calendar.generate_holidays
 
     (DD..DD+INTERVAL).each do |i|
       val = mapping(i,holidays)
@@ -48,18 +36,24 @@ module Calendar
     resp
   end
 
-  def Calendar.make_chromosome
+  def Calendar.make_chromosome_template(from,dates_list)   #make chromosome from here
     chromosome = ''
-    holidays = Calendar::HOLIDAYS
-
-    (DD..DD+INTERVAL).each do |i|
-      chromosome<<mapping(i,holidays)
+    (from..from+INTERVAL).each do |i|
+      chromosome<<'1' if dates_list.include?(i)
+      chromosome<<'0' unless dates_list.include?(i)
     end
     p "Chromosome template made !" 
     chromosome
   end
 
-  CHROMSOME_TEMPLATE = Calendar.make_chromosome
+  def Calendar.valid_holiday(d)
+    d['class']!='head' && ( d.css('td').last.text=='Gazetted Holiday') #'Restricted Holiday'
+  end
+
+  def Calendar.mapping(date,holidays)
+    return '1' if date.wday==0 || date.wday==6  || holidays.include?(date)    #sat/sun/gazetted holidays
+    return '0'
+  end
 
 end
 
