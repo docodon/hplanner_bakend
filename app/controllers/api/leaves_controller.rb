@@ -7,8 +7,8 @@ module Api
 
 		def plan
 			return render json: { message: "incomplete params"} if incomp_params
-			num_gen = 150
-			num_chromosomes = 30
+			num_gen = 75
+			num_chromosomes = 150
 			num_leaves = params[:leaves].to_i
 			@gen = Generation.new(num_chromosomes, num_leaves, params[:holiday_list], params[:date_from])
 

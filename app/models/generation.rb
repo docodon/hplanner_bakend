@@ -23,7 +23,7 @@ class Generation
   def rate_generation
   	@total_score = 0
   	@generation.each_with_index do |i,j|
-  		@total_score += i.fitness_function_1 + 1
+  		@total_score += i.fitness_function + 1
   		@roulette_wheel << @total_score
   	end
   	p "Rating complete for generation #{@gen_num}"

@@ -4,10 +4,11 @@ class Chromosome
   @@mutation_rate = 0.01
 
   def initialize(leaves,template)
-    @string = template.clone() #0 - working_day , sun/sat/gazzeted - 1 , 2 - leaves
+    @string = template.clone() #0 - working_day , sun/sat/gazzeted - 1 , 2 - variable leaves
     @v_leaves = leaves
     @fitness_score = nil
     fill_variable_leaves( working_days )
+    @fitness_function = set_fitness_function
   end
 
   def get
@@ -18,14 +19,8 @@ class Chromosome
     @fitness_score
   end
 
-  def fitness_function_1
-    @fitness_score = 100
-    pv=-1
-    @string.split('').each_with_index do |ch,j|
-      @fitness_score -= ((j-pv)-3 )  if j-pv>3 && ch=='0'
-      pv = j if ch!='0'
-    end
-    @fitness_score = [0 , @fitness_score].max
+  def fitness_function
+    eval @fitness_function
   end
 
   def self.cross_over a,b
@@ -92,5 +87,28 @@ class Chromosome
     return "calendar_holiday" if i=='1'
     return "probable_holiday" if i=='2'
   end
+
+  def set_fitness_function
+    "
+      @fitness_score = 100
+        pv=-1
+        @string.split('').each_with_index do |ch,j|
+          @fitness_score -= ((j-pv)-3 )  if j-pv>3 && ch=='0'
+          pv = j if ch!='0'
+        end
+        @fitness_score = [0 , @fitness_score].max    
+    "
+  end
+
+=begin
+    for a fitness function : 
+    given will be chromosome representation .i.e a string 
+      @string of length 366 with 
+        @string[i] = 0,1,2 where
+          0 -   working day
+          1 -   leave
+          2 -   variable leave
+      don't forget to update @fitness_score for the corresponding individual
+=end
 
 end
