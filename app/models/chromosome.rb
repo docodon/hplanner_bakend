@@ -89,27 +89,7 @@ class Chromosome
   end
 
   def set_fitness_function
-    return " 
-      def mapping(cnt)
-        return 20 if cnt>=9
-        return 15 if cnt>=8
-        return 10 if cnt>=6
-        return 5  if cnt>=5
-        return 0
-      end
-
-      @fitness_score = 0
-      cnt = 0
-      @string.split('').each_with_index do |ch,j|
-        if ch=='0' || j==@string.length
-          @fitness_score += mapping(cnt)
-          cnt = 0
-        else
-          cnt+=1
-        end
-      end
-      @fitness_score = [100,@fitness_score].min
-    "
+    FitnessFunction.first.code
   end
 
 =begin

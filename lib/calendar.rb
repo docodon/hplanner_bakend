@@ -8,7 +8,7 @@ module Calendar
   DD = Date.today
   INTERVAL = 365
 
-  def Calendar.generate_holidays
+def Calendar.generate_holidays
     yy =  DD.year
     holidays = Set.new
     urls = [  URL_TEMP+yy.to_s , URL_TEMP+(yy+1).to_s  ]
