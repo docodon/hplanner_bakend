@@ -3,12 +3,12 @@ class Chromosome
   @@cross_over_rate = 0.6
   @@mutation_rate = 0.01
 
-  def initialize(leaves,template)
+  def initialize(leaves, template, fitness_function_id)
     @string = template.clone() #0 - working_day , sun/sat/gazzeted - 1 , 2 - variable leaves
     @v_leaves = leaves
     @fitness_score = nil
     fill_variable_leaves( working_days )
-    @fitness_function = set_fitness_function
+    @fitness_function = set_fitness_function(fitness_function_id)
   end
 
   def get
@@ -88,21 +88,15 @@ class Chromosome
     return "probable_holiday" if i=='2'
   end
 
-  def set_fitness_function
-    FitnessFunction.first.code
-  end
+  private
 
-=begin
-    "
-      @fitness_score = 100
-        pv=-1
-        @string.split('').each_with_index do |ch,j|
-          @fitness_score -= ((j-pv)-3 )  if j-pv>3 && ch=='0'
-          pv = j if ch!='0'
-        end
-        @fitness_score = [0 , @fitness_score].max    
-    "
-=end
+  def set_fitness_function(id)
+    begin
+      FitnessFunction.find(id).code
+    rescue 
+      FitnessFunction.first.code      
+    end
+  end
 
 =begin
     for a fitness function : 

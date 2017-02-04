@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/theBatcave', as: 'rails_admin'
   namespace :api do
     
     resources :leaves do

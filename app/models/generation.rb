@@ -1,13 +1,13 @@
 class Generation
   require 'date'
   
-  def initialize (pop_size, leaves, dates_list, from)
+  def initialize (pop_size, leaves, dates_list, from, fitness_function_id)
     @generation = []
     @from = from.to_date
     @chromosome_template = make_chromosome_template(dates_list)
 
     pop_size.times do 
-  		@generation<< Chromosome.new(leaves,@chromosome_template)
+  		@generation<< Chromosome.new(leaves,@chromosome_template,fitness_function_id)
   	end
   	
     @roulette_wheel = []

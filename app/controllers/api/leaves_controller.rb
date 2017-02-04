@@ -10,7 +10,7 @@ module Api
 			num_gen = 200
 			num_chromosomes = 150
 			num_leaves = params[:leaves].to_i
-			@gen = Generation.new(num_chromosomes, num_leaves, params[:holiday_list], params[:date_from])
+			@gen = Generation.new(num_chromosomes, num_leaves, params[:holiday_list], params[:date_from],params[:user_status])
 
 			ar = []
 			
