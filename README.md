@@ -23,7 +23,7 @@ It is backend repo for [project](https://github.com/docodon/holiday_advisor)
 [Heroku link](https://secure-atoll-63871.herokuapp.com)
 
 
-### You can contribute to project by suggesting fitness functions 
+### You can contribute to project by adding fitness functions 
 	
  Sample fitness function is as below :
 
@@ -37,7 +37,7 @@ It is backend repo for [project](https://github.com/docodon/holiday_advisor)
         @fitness_score = [0 , @fitness_score].max    
 	end
 	    
-For a function there are two variables: 
+Function has two variables: 
 * @fitness_score - set its value in your fitness_function (scale of 100 is appreciated)
 * @string        - chromosome string of length 366 .
 
@@ -48,8 +48,9 @@ For a function there are two variables:
 
 	you don't need to play with @string variable .
 
-For the function suggest me the scenario for which the fitness functions is suitable likewise the above one is suitable if a person needs frequent leaves but not long vacations.	
+For the function I need two things : 
+* Function code in ruby updating @fitness_score
+* Scenario where the function can be used as above one is helpful where person needs frequent leaves and not long vacations .  
 
-
-_**suggestions or collaborations are highly appreciated**_
+_**suggestions or collaborations are highly appreciated and ping me if interested**_
 
