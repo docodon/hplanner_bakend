@@ -94,19 +94,16 @@ class Chromosome
     begin
       FitnessFunction.find(id).code
     rescue 
-      FitnessFunction.first.code      
+    "
+      @fitness_score = 100
+        pv=-1
+        @string.split('').each_with_index do |ch,j|
+          @fitness_score -= ((j-pv)-3 )  if j-pv>3 && ch=='0'
+          pv = j if ch!='0'
+        end
+        @fitness_score = [0 , @fitness_score].max    
+    "
     end
   end
-
-=begin
-    for a fitness function : 
-    given will be chromosome representation .i.e a string 
-      @string of length 366 with 
-        @string[i] = 0,1,2 where
-          0 -   working day
-          1 -   leave
-          2 -   variable leave
-      don't forget to update @fitness_score for the corresponding individual
-=end
 
 end
